@@ -1,0 +1,27 @@
+<launch>
+	<arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+	<arg name="start_x_pos" default="2.0"/>
+	<arg name="start_y_pos" default="1.0"/>
+	<arg name="start_z_pos" default="0.0"/>
+	<arg name="end_x_pos" default="7.0"/>
+	<arg name="end_y_pos" default="7.0"/>
+	<arg name="end_z_pos" default="0.0"/>
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find waffle_rrl_lab)/world/rrl_map"/>
+		<arg name="paused" value="false"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="gui" value="true"/>
+		<arg name="headless" value="false"/>
+		<arg name="debug" value="false"/>
+	</include>
+
+	<param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro"/>
+
+	<arg name="sx_pos" value="$(eval -5.5 + start_x_pos)"/>
+	<arg name="sy_pos" value="$(eval -5.05 + start_y_pos)"/>
+
+	<node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_$(arg model) -x $(arg sx_pos) -y $(arg sy_pos) -z $(arg start_z_pos) -param robot_description"/>
+	
+	<node pkg="waffle_rrl_lab" type="a*_tb3_waffle.py" name="turtlebot3_controller" args ="$(arg start_x_pos) $(arg start_y_pos) $(arg end_x_pos) $(arg end_y_pos)" output="screen"/>
+</launch>
