@@ -29,7 +29,7 @@ export TURTLEBOT3_MODEL=waffle
 ```
 Make sure the permissions of executable python files are proper.
 ```bash
-chmod a+x ~/turtlebot3_ws/src/turtlebot3_ws/scripts/*.py
+chmod a+x ~/turtlebot3_ws/src/turtlebot3-waffle/scripts/*.py
 ```
 
 Close the terminal and open a new terminal and run the following:
