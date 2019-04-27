@@ -1,9 +1,10 @@
 
 # TURTLEBOT3 - WAFFLE
-ROS - Kinetic
-Ubuntu - 16.04
-Python - 2.7
-Gazebo - 7.0.0
+
+**ROS - Kinetic </br>
+Ubuntu - 16.04 </br>
+Python - 2.7 </br>
+Gazebo - 7.0.0** </br>
 
 This package contains instructions to run the Gazebo 7.0.0 simulation of TurtleBot3-waffle on Ubuntu 16.04 and python 2.7
 The e-manual for turtlebot3 can be found [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/).
@@ -29,10 +30,14 @@ export TURTLEBOT3_MODEL=waffle
 ```
 Make sure the permissions of executable python files are proper.
 ```bash
-chmod a+x ~/turtlebot3_ws/src/turtlebot3_ws/scripts/*.py
+chmod a+x ~/turtlebot3_ws/src/turtlebot3-waffle/scripts/*.py
 ```
 
 Close the terminal and open a new terminal and run the following:
 ```bash
 roslaunch waffle_rrl_lab waffle_gazebo.launch start_x_pos:=2 start_y_pos:=1 end_x_pos:=7 end_y_pos:=7
 ```
+Enjoy playing with the simulation! </br>
+NOTE: The turtlebot may crash into one of the obstacles! Tune parameters in the ```a*_tb3_waffle.py``` and ```turtlebot3_controller.py``` to get it working as you want.
+
+You can also refer to [astar for turtlebot3](https://github.com/RachithP/motion-planning/tree/master/A-star/non-holonomic_robot) for more details on the implementation of astar algorithm.
